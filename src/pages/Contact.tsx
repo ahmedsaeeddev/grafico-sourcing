@@ -4,8 +4,24 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BackToTop from '../components/BackToTop';
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  service?: string;
+  message?: string;
+}
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -13,15 +29,15 @@ const Contact = () => {
     message: ''
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrors>({});
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
     // Clear error when user starts typing
-    if (errors[e.target.name]) {
+    if (errors[e.target.name as keyof FormErrors]) {
       setErrors({
         ...errors,
         [e.target.name]: ''
@@ -29,8 +45,8 @@ const Contact = () => {
     }
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validateForm = (): FormErrors => {
+    const newErrors: FormErrors = {};
     
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
@@ -49,7 +65,7 @@ const Contact = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors = validateForm();
     
@@ -198,7 +214,7 @@ const Contact = () => {
                   <textarea
                     id="message"
                     name="message"
-                    rows="5"
+                    rows={5}
                     value={formData.message}
                     onChange={handleChange}
                     className={errors.message ? 'error' : ''}
