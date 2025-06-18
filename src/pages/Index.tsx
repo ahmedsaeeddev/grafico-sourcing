@@ -1,12 +1,50 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import ServicesPreview from '../components/ServicesPreview';
+import Testimonials from '../components/Testimonials';
+import ContactBanner from '../components/ContactBanner';
+import Footer from '../components/Footer';
+import BackToTop from '../components/BackToTop';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="page">
+      <Navbar />
+      <Hero />
+      <section id="intro" className="intro-section">
+        <div className="container">
+          <div className="intro-content">
+            <h2>Welcome to Grafico Sourcing</h2>
+            <p>
+              Your premier destination for professional digitizing services. We specialize in 
+              transforming your designs into high-quality embroidery files, vector art, and 
+              custom patches with precision and artistry.
+            </p>
+            <div className="intro-stats">
+              <div className="stat">
+                <h3>5000+</h3>
+                <p>Projects Completed</p>
+              </div>
+              <div className="stat">
+                <h3>98%</h3>
+                <p>Client Satisfaction</p>
+              </div>
+              <div className="stat">
+                <h3>24hr</h3>
+                <p>Turnaround Time</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <ServicesPreview />
+      <Testimonials />
+      <ContactBanner />
+      <Footer />
+      <BackToTop />
     </div>
   );
 };
